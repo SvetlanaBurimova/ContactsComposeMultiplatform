@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.PersonAdd
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -21,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.plcoding.contactscomposemultiplatform.contacts.domain.Contact
+import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.AddContactSheet
 import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.ContactListItem
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactListScreen(
     state: ContactListState,
@@ -34,7 +33,7 @@ fun ContactListScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    onEvent(ContactListEvent.OnAddNewContactClick)
+                    onEvent(ContactListEvent.OnAddNewContactClicked)
                 },
                 shape = RoundedCornerShape(20.dp)
             ) {
@@ -73,4 +72,10 @@ fun ContactListScreen(
             }
         }
     }
+    AddContactSheet(
+        state = state,
+        newContact = newContact,
+        isOpen = state.isAddContactSheetOpen,
+        onEvent = onEvent
+    )
 }

@@ -79,7 +79,7 @@ class ContactListViewModel(
                 ) }
                 newContact = event.contact
             }
-            ContactListEvent.OnAddNewContactClick -> {
+            ContactListEvent.OnAddNewContactClicked -> {
                 _state.update { it.copy(
                     isAddContactSheetOpen = true
                 ) }
