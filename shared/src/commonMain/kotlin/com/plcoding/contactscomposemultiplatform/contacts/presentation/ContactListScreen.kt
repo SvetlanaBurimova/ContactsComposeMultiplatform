@@ -23,6 +23,7 @@ import com.plcoding.contactscomposemultiplatform.contacts.domain.Contact
 import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.AddContactSheet
 import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.ContactDetailSheet
 import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.ContactListItem
+import com.plcoding.contactscomposemultiplatform.contacts.presentation.components.RecentlyAddedContacts
 import com.plcoding.contactscomposemultiplatform.core.presentation.ImagePicker
 
 @Composable
@@ -55,6 +56,15 @@ fun ContactListScreen(
             contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            item {
+                RecentlyAddedContacts(
+                    contacts = state.recentlyAddedContacts,
+                    onClick = {
+                        onEvent(ContactListEvent.SelectContact(it))
+                    }
+                )
+            }
+
             item {
                 Text(
                     text = "My contacts (${state.contacts.size})",
@@ -92,6 +102,6 @@ fun ContactListScreen(
                 imagePicker.pickImage()
             }
             onEvent(event)
-        },
+        }
     )
 }
