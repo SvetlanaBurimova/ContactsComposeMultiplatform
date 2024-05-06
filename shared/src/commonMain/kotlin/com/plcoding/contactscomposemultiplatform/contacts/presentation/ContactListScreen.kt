@@ -98,7 +98,7 @@ fun ContactListScreen(
         newContact = newContact,
         isOpen = state.isAddContactSheetOpen,
         onEvent = { event ->
-            if(event is ContactListEvent.OnAddPhotoClicked) {
+            if (event is ContactListEvent.OnAddPhotoClicked) {
                 imagePicker.pickImage()
             }
             onEvent(event)

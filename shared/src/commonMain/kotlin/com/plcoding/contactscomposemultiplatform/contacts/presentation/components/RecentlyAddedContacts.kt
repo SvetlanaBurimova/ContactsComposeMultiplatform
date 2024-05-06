@@ -25,7 +25,7 @@ fun RecentlyAddedContacts(
     Column(
         modifier = modifier
     ) {
-        if(contacts.isNotEmpty()) {
+        if (contacts.isNotEmpty()) {
             Text(
                 text = "Recently Added",
                 modifier = Modifier

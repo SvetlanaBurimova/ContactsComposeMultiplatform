@@ -13,7 +13,7 @@ actual fun ContactsTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colorScheme = if(darkTheme) DarkColorScheme else LightColorScheme,
+        colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
         typography = Typography,
         content = content
     )
