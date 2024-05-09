@@ -161,7 +161,7 @@ class ContactListViewModel(
 
                         viewModelScope.launch {
                             contactDataSource.insertContact(contact)
-                            delay(300L)
+                            delay(300L) // Animation delay
                             newContact = null
                         }
                     } else {

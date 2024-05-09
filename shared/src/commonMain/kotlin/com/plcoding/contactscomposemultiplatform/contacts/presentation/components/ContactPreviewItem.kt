@@ -19,8 +19,7 @@ fun ContactPreviewItem(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
-            .clickable(onClick = onClick),
+        modifier = modifier.clickable(onClick = onClick),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ContactPhoto(
@@ -29,7 +28,7 @@ fun ContactPreviewItem(
         )
         Spacer(Modifier.height(8.dp))
         Text(
-            text = contact.firstName,
+            text = contact.firstName
         )
     }
 }

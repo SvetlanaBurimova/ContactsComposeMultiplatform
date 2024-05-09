@@ -24,23 +24,23 @@ actual class ImagePicker(
 
     @OptIn(ExperimentalForeignApi::class)
     private val delegate: UINavigationControllerDelegateProtocol =
-        object : NSObject(), UIImagePickerControllerDelegateProtocol,
+        object : NSObject(),
+            UIImagePickerControllerDelegateProtocol,
             UINavigationControllerDelegateProtocol {
+                override fun imagePickerController(
+                    picker: UIImagePickerController,
+                    didFinishPickingImage: UIImage,
+                    editingInfo: Map<Any?, *>?
+                ) {
+                    val imageNsData =
+                        UIImageJPEGRepresentation(didFinishPickingImage, 1.0) ?: return
+                    val bytes = ByteArray(imageNsData.length.toInt())
+                    memcpy(bytes.refTo(0), imageNsData.bytes, imageNsData.length)
 
-            override fun imagePickerController(
-                picker: UIImagePickerController,
-                didFinishPickingImage: UIImage,
-                editingInfo: Map<Any?, *>?,
-            ) {
-                val imageNsData = UIImageJPEGRepresentation(didFinishPickingImage, 1.0)
-                    ?: return
-                val bytes = ByteArray(imageNsData.length.toInt())
-                memcpy(bytes.refTo(0), imageNsData.bytes, imageNsData.length)
+                    onImagePicked(bytes)
 
-                onImagePicked(bytes)
-
-                picker.dismissViewControllerAnimated(true, null)
-            }
+                    picker.dismissViewControllerAnimated(true, null)
+                }
 
             override fun imagePickerControllerDidCancel(picker: UIImagePickerController) {
                 picker.dismissViewControllerAnimated(true, null)
